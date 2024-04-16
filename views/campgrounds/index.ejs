@@ -1,0 +1,49 @@
+<% layout('layouts/boilerplate') %>
+<link
+	rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+	integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+	crossorigin="" />
+<link rel="stylesheet" href="/css/screen.css" />
+<link rel="stylesheet" href="/css/MarkerCluster.css" />
+<link rel="stylesheet" href="/css/MarkerCluster.Default.css" />
+<div class="container">
+	<div id="cluster-map"></div>
+	<h1>All Campgrounds</h1>
+
+	<% for (const campground of campgrounds) { %>
+	<div class="card mb-3">
+		<div class="row">
+			<div class="col-md-4">
+				<img
+					src="<%=campground.images[0].url %>"
+					class="img-fluid"
+					alt="<%= campground.title %>" />
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 class="card-title"><%= campground.title %></h5>
+					<p class="card-text"><%= campground.description %></p>
+					<p class="card-text">
+						<small class="text-muted"><%= campground.location %></small>
+					</p>
+					<a href="/campgrounds/<%= campground._id %>" class="btn btn-primary"
+						>Read More</a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% } %>
+</div>
+
+<script
+	src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"
+	integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA=="
+	crossorigin=""></script>
+<script src="/js/leaflet.markercluster-src.js"></script>
+<script>
+	const campgroundss =  {features: <%-JSON.stringify(campgrounds)%>}
+</script>
+
+<script src="/js/clusterMap.js"></script>
