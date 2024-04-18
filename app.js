@@ -25,6 +25,8 @@ const usersRoute = require('./routes/users');
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
+const router = express.Router();
+
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -161,7 +163,7 @@ app.use((err, req, res, next) => {
 	// res.status(status).send(message);
 });
 
-app.use('/.netlify/functions/app', router);
+app.use('/.netlify/functions/api', router);
 module.exports.handler = serverless(app);
 
 const port = process.env.PORT || 3000;
