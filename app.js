@@ -163,8 +163,5 @@ app.use((err, req, res, next) => {
 	// res.status(status).send(message);
 });
 
-app.use('/.netlify/functions/api', router);
-module.exports.handler = serverless(app);
-
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port: ${port}`));
